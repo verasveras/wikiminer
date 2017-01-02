@@ -5,12 +5,13 @@ const request = require('request');
 const strip = require('strip-markdown');
 const remark = require('remark');
 const processor = remark().use(strip);
+const utils = require ('./utils')
 
 // Title of the page exactly as it appears!
 let articleTitle = 'Dogs'; /* TODO Figure out how well this works */
 
 request('https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext&format=json&titles=dog', function (error, response, body) {
-  
+
   if (!error && response.statusCode == 200) {
 
   	/* TODO go through response header to see if you found one */
