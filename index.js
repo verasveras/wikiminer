@@ -1,11 +1,10 @@
-// For making requests
 const request = require('request');
+const utils = require ('./utils');
 
 // For markdown removal
 const strip = require('strip-markdown');
 const remark = require('remark');
 const processor = remark().use(strip);
-const utils = require ('./utils')
 
 // Title of the page exactly as it appears!
 let articleTitle = 'Dogs'; /* TODO Figure out how well this works */
@@ -16,7 +15,7 @@ request('https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explainte
 
   	/* TODO go through response header to see if you found one */
 
-  	// body = processor.process(body);
+  // body = processor.process(body);
 	// let finalBody = String(body);
 
 	// let regExp = / {{.*}} /
@@ -24,12 +23,12 @@ request('https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explainte
 	let json = JSON.parse(body);
 	jsonPages = json.query.pages;
 
-
 	for (var property in jsonPages) {
 		let text = jsonPages[property].extract;
 		text = processor.process(text);
 		text = String(text);
-		console.log(text);
+    console.log(utils.topWords(text));
+		// console.log(text);
 	}
 
 
