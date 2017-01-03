@@ -37,7 +37,8 @@ module.exports = {
   },
 
   noStopwords: function(text){
-    return stopword.removeStopwords(text);
+    text = text.split(/\s+/);
+    return stopword.removeStopwords(text).join(' ');
 
   }
 
