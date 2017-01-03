@@ -4,7 +4,7 @@ const stopword = require('stopword');
 function getWordCount(text){
     let seen = {};
     //let words = text.toLowerCase().replace(/\W/, '').split(/\s+/);
-    let words = text.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").split(/\s+/);
+    let words = text.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()\"\d]/g,"").split(/\s+/);
 
     // go through each word, singularizing them.
     words.forEach(word =>{
@@ -15,18 +15,16 @@ function getWordCount(text){
     return seen;
 }
 
+function makeDict(words, counts){
+  let dict = {};
+  words.forEach(function(word, idx){
+    dict[word] = counts[idx];
+  })
+  return dict;
+}
+
 module.exports = {
   topWords: function(text){
-    // let seen = {};
-
-    // //let words = text.toLowerCase().replace(/\W/, '').split(/\s+/);
-    // let words = text.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").split(/\s+/);
-
-    // // go through each word, singularizing them and capitalize.
-    // words.forEach(word =>{
-    //   let singularWord = pluralize.singular(word);
-    //   seen[singularWord] = seen[singularWord] ? seen[singularWord] + 1 : 1;
-    // })
 
     const seen = getWordCount(text)
 
@@ -48,7 +46,7 @@ module.exports = {
       }
     }
 
-    return [topCounts, topWords];
+    return makeDict(topCounts, topWords);
 
   },
 
@@ -62,8 +60,26 @@ module.exports = {
   },
 
   worstWords: function(text){
+    const seen = getWordCount(text);
+    let worstWords = [];
+    let worstCounts = [];
 
+    for (let word in seen){
+      if (worstWords.length < 20) {
+        worstWords.push(word)
+        worstCounts.push(seen[word]);
+      }
+      else {
+        let max = Math.max(... worstCounts);
+        if (seen[word] < max){
+          let index = worstCounts.indexOf(max);
+          worstWords[index] = word;
+          worstCounts[index] = seen[word];
+        }
+      }
+    }
 
+    return makeDict(worstWords, worstCounts);
   }
 
 }

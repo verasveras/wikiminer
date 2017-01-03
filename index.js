@@ -27,7 +27,7 @@ request('https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explainte
 		let text = jsonPages[property].extract;
 		text = processor.process(text);
 		text = String(text);
-    	console.log(utils.topWords(text));
+    	console.log(utils.worstWords(text));
 		// console.log(text);
 	}
 
