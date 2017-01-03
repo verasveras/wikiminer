@@ -26,8 +26,10 @@ request('https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explainte
 	for (var property in jsonPages) {
 		let text = jsonPages[property].extract;
 		text = processor.process(text);
+
 		text = utils.noStopwords(String(text));
-    	console.log(utils.topWords(text));
+    console.log(utils.topWords(text));
+
 		// console.log(text);
 	}
 
