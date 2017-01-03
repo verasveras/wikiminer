@@ -1,4 +1,5 @@
 const pluralize = require('pluralize');
+const stopword = require('stopword');
 
 module.exports = {
   topWords: function(text){
@@ -33,6 +34,10 @@ module.exports = {
 
     return [topCounts, topWords];
 
+  },
+
+  noStopwords: function(text){
+    return stopword.removeStopwords(text);
   }
 
 }
