@@ -1,4 +1,5 @@
-const request = require('request');
+var request = require('request');
+const Promise = require("bluebird");
 const utils = require ('./utils');
 
 // For markdown removal
@@ -6,38 +7,39 @@ const strip = require('strip-markdown');
 const remark = require('remark');
 const processor = remark().use(strip);
 
-// Title of the page exactly as it appears!
-let articleTitle = 'Dogs'; /* TODO Figure out how well this works */
 
-request('https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext&format=json&titles=dog', function (error, response, body) {
+module.exports = function(){
 
-  if (!error && response.statusCode == 200) {
 
-  	/* TODO go through response header to see if you found one */
+	return function(title, topCount, leastCount){
 
-  // body = processor.process(body);
-	// let finalBody = String(body);
+		const url = `https://en.wikipedia.org/w/api.php?action=query&prop=extracts&explaintext&format=json&titles=${title}`
+		request = Promise.promisify(request);
+		return request(url)
+		.then((response) => {
+			let json = JSON.parse(response.body);
+	 		let jsonPages = json.query.pages;
+	 		let fullText = ''; 
 
-	// let regExp = / {{.*}} /
-	// let matches = finalBody.match(regExp);
-	let json = JSON.parse(body);
-	jsonPages = json.query.pages;
+	 		for (var property in jsonPages) {
+				let text = jsonPages[property].extract;
+				text = processor.process(text);
+				fullText += ` ${text}`
+			}
 
-	for (var property in jsonPages) {
-		let text = jsonPages[property].extract;
-		text = processor.process(text);
+			let noStopWords = utils.noStopwords(fullText)
 
-		text = utils.noStopwords(String(text));
-    console.log(utils.topWords(text));
+			return {
+				text: fullText, 
+				noStopWords: noStopWords,
+				topWords: utils.topWords(noStopWords), 
+				leastWords: utils.worstWords(noStopWords) 
+			}
+		})
+		.catch(() =>{
+			/* Soon!!! */
+		})
 
-		// console.log(text);
+
 	}
-
-
-	// let regExp = /dogs/
-	// body = body.replace(regExp, '');
-	// console.log(body);
-
-  }
-
-})
+}();

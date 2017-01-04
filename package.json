@@ -9,6 +9,7 @@
   "author": "Lisa Veras and Galen Corey",
   "license": "ISC",
   "dependencies": {
+    "bluebird": "^3.4.7",
     "pluralize": "^3.1.0",
     "remark": "^6.2.0",
     "request": "^2.79.0",

@@ -26,6 +26,8 @@ function makeDict(words, counts){
 module.exports = {
   topWords: function(text){
 
+    // text = (' ' + text).slice(1);
+
     const seen = getWordCount(text)
 
     let topWords = [];
@@ -51,12 +53,10 @@ module.exports = {
   },
 
   noStopwords: function(text){
+
+    text = (' ' + text).slice(1);
     text = text.split(/\s+/);
     return stopword.removeStopwords(text).join(' ');
-
-  },
-
-  getWordCount: function(text){
 
   },
 
