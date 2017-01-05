@@ -17,6 +17,9 @@ module.exports = function(){
 		request = Promise.promisify(request);
 		return request(url)
 		.then((response) => {
+
+			console.log(response);	
+
 			let json = JSON.parse(response.body);
 	 		let jsonPages = json.query.pages;
 	 		let fullText = ''; 
@@ -36,7 +39,7 @@ module.exports = function(){
 				leastWords: utils.worstWords(noStopWords) 
 			}
 		})
-		.catch(() =>{
+		.catch((error) =>{
 			/* Soon!!! */
 		})
 
