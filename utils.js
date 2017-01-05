@@ -24,17 +24,14 @@ function makeDict(words, counts){
 }
 
 module.exports = {
-  topWords: function(text){
-
-    // text = (' ' + text).slice(1);
-
+  topWords: function(text, count){
     const seen = getWordCount(text)
 
     let topWords = [];
     let topCounts = [];
 
     for (let word in seen){
-      if (topWords.length < 20) {
+      if (topWords.length < count) {
         topWords.push(word)
         topCounts.push(seen[word]);
       }
@@ -48,7 +45,7 @@ module.exports = {
       }
     }
 
-    return makeDict(topCounts, topWords);
+    return makeDict(topWords, topCounts);
 
   },
 
@@ -60,13 +57,13 @@ module.exports = {
 
   },
 
-  worstWords: function(text){
+  worstWords: function(text, count){
     const seen = getWordCount(text);
     let worstWords = [];
     let worstCounts = [];
 
     for (let word in seen){
-      if (worstWords.length < 20) {
+      if (worstWords.length < count) {
         worstWords.push(word)
         worstCounts.push(seen[word]);
       }
