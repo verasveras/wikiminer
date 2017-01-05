@@ -4,6 +4,6 @@ const wikiminer = require('./index.js')
 // 	console.log(response);
 // })
 
-wikiminer('ghgfvbnhgbnhbnjhbnjhn').then((response) => {
-	console.log(response);
+wikiminer('dog').then((response) => {
+	//console.log(response);
 })

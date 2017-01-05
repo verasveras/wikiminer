@@ -18,30 +18,31 @@ module.exports = function(){
 		return request(url)
 		.then((response) => {
 
-			console.log(response);	
-
 			let json = JSON.parse(response.body);
 	 		let jsonPages = json.query.pages;
-	 		let fullText = ''; 
+	 		let fullText = '';
 
 	 		for (var property in jsonPages) {
+	 			if (!jsonPages[property].extract) throw new Error(`Unable to find page with title ${title}`);
+
 				let text = jsonPages[property].extract;
 				text = processor.process(text);
 				fullText += ` ${text}`
 			}
 
+			const redirect = new RegExp(`${title} may refer to:`, 'i');
+			if (redirect.test(fullText)) throw new Error(`"${title}" may refer to multiple pages. Please enter a more specific title`)
+
 			let noStopWords = utils.noStopwords(fullText)
 
 			return {
-				text: fullText, 
+				text: fullText,
 				noStopWords: noStopWords,
-				topWords: utils.topWords(noStopWords), 
-				leastWords: utils.worstWords(noStopWords) 
+				topWords: utils.topWords(noStopWords),
+				leastWords: utils.worstWords(noStopWords)
 			}
 		})
-		.catch((error) =>{
-			/* Soon!!! */
-		})
+		.catch(console.error)
 
 
 	}
