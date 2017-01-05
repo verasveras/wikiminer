@@ -2,8 +2,6 @@ module.exports = function(){
 	var request = require('request');
 	const Promise = require("bluebird");
 	const utils = require ('./utils');
-
-	// For markdown removal
 	const strip = require('strip-markdown');
 	const remark = require('remark');
 	const processor = remark().use(strip);
@@ -13,14 +11,11 @@ module.exports = function(){
 		request = Promise.promisify(request);
 		return request(url)
 		.then((response) => {
-
-			let json = JSON.parse(response.body);
-	 		let jsonPages = json.query.pages;
+			const jsonPages = JSON.parse(response.body).query.pages;
 	 		let fullText = '';
 
-	 		for (var property in jsonPages) {
-	 			if (!jsonPages[property].extract) throw new Error(`Unable to find page with title ${title}`);
-
+	 		for (let property in jsonPages) {
+	 			if (!jsonPages[property].extract && !fullText) throw new Error(`Unable to find page with title ${title}`);
 				let text = jsonPages[property].extract;
 				text = processor.process(text);
 				fullText += ` ${text}`

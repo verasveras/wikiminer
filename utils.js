@@ -1,13 +1,9 @@
 module.exports = function(){
   const pluralize = require('pluralize');
   const stopword = require('stopword');
-
   function getWordCount(text){
       let seen = {};
-      //let words = text.toLowerCase().replace(/\W/, '').split(/\s+/);
       let words = text.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()\"\d]/g,"").split(/\s+/);
-
-      // go through each word, singularizing them.
       words.forEach(word =>{
         let singularWord = pluralize.singular(word);
         seen[singularWord] = seen[singularWord] ? seen[singularWord] + 1 : 1;
@@ -28,10 +24,8 @@ module.exports = function(){
   return {
     topWords: function(text, count){
       const seen = getWordCount(text)
-
       let topWords = [];
       let topCounts = [];
-
       for (let word in seen){
         if (topWords.length < count) {
           topWords.push(word)
@@ -46,9 +40,7 @@ module.exports = function(){
           }
         }
       }
-
       return makeDict(topWords, topCounts);
-
     },
 
     noStopwords: function(text){
@@ -78,7 +70,6 @@ module.exports = function(){
           }
         }
       }
-
       return makeDict(worstWords, worstCounts);
     }
   }
