@@ -17,10 +17,11 @@ module.exports = function(){
   }
 
   function makeDict(words, counts){
-    let dict = {};
+    let dict = [];
     words.forEach(function(word, idx){
-      dict[word] = counts[idx];
+      dict.push({word: word, count: counts[idx]})
     })
+    dict.sort((a,b) => a.count < b.count)
     return dict;
   }
 
@@ -81,4 +82,4 @@ module.exports = function(){
       return makeDict(worstWords, worstCounts);
     }
   }
-}()
+}();
