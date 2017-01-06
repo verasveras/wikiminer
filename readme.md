@@ -1,4 +1,4 @@
-![logo](/Wikiminer.png)
+![logo](/images/wikiminer-small.png)
 ##Wikiminer
 ***
 
