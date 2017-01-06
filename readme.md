@@ -48,8 +48,8 @@ Will print to the console:
 
 ``` javascript
 {
-  text: /\*the text of the dog article\*/,
-  textMinusStop: /\*the text of the dog article without stop words \*/ ,
+  text: /*the text of the dog article*/,
+  textMinusStop: /*the text of the dog article without stop words */ ,
   topWords:[ { word: 'dog', count: 345 },
      { word: 'human', count: 60 },
      { word: 'wolf', count: 48 },
