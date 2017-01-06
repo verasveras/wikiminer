@@ -28,7 +28,7 @@ module.exports = function(){
 
 			return {
 				text: fullText,
-				noStopWords: noStopWords,
+				textMinusStop: noStopWords,
 				topWords: utils.topWords(noStopWords, topCount),
 				leastWords: utils.worstWords(noStopWords, leastCount)
 			}

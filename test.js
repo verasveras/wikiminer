@@ -4,6 +4,6 @@ const wikiminer = require('./index.js')
 // 	console.log(response);
 // })
 
-wikiminer('dog', 5).then((response) => {
-	console.log(response.topWords);
+wikiminer('dog', 5, 5).then((response) => {
+	console.log(response);
 })
