@@ -17,7 +17,7 @@ module.exports = function(){
     words.forEach(function(word, idx){
       dict.push({word: word, count: counts[idx]})
     })
-    dict.sort((a,b) => a.count < b.count)
+    dict.sort((a,b) => a.count - b.count)
     return dict;
   }
 
