@@ -1,7 +1,18 @@
 {
   "name": "wikiminer",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.1",
+  "description": "a wrapper for the Wikipedia API that provides data mining functionality.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/verasveras/wikiminer"
+  },
+  "keywords":[
+    "Wikipedia",
+    "data mining",
+    "stop words",
+    "machine learning",
+    "word frequency"
+  ],
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

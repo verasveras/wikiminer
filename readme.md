@@ -10,6 +10,8 @@ Wikiminer is a wrapper for the Wikipedia API that provides data mining functiona
 - an array containing the most common words in the article and their occurences
 - an array containing the least common words in the article and their occurences
 
+When finding most and least common words, case is ignored and singular and plural versions of words are counted together.
+
 ###Usage
 ```
 npm install wikiminer
