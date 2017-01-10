@@ -21,8 +21,9 @@ module.exports = function(){
 				fullText += ` ${text}`
 			}
 
-			const redirect = new RegExp(`${title} may refer to:`, 'i');
-			if (redirect.test(fullText)) throw new Error(`"${title}" may refer to multiple pages. Please enter a more specific title`)
+			const redirect = new RegExp(`${title}.+?may refer to:\n`, 'i');
+			const redirect2 = new RegExp(`${title}.+?can refer to:\n`, 'i');
+			if (redirect.test(fullText) || redirect2.test(fullText) ) throw new Error(`"${title}" may refer to multiple pages. Please enter a more specific title`)
 
 			let noStopWords = utils.noStopwords(fullText)
 

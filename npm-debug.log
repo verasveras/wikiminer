@@ -1,0 +1,74 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/Users/veras/.nvm/versions/node/v6.4.0/bin/node',
+1 verbose cli   '/Users/veras/.nvm/versions/node/v6.4.0/bin/npm',
+1 verbose cli   'adduser' ]
+2 info using npm@4.0.5
+3 info using node@v6.4.0
+4 verbose adduser before first PUT { _id: 'org.couchdb.user:lisaveras',
+4 verbose adduser   name: 'lisaveras',
+4 verbose adduser   password: 'XXXXX',
+4 verbose adduser   email: 'lisaveras@gmail.com',
+4 verbose adduser   type: 'user',
+4 verbose adduser   roles: [],
+4 verbose adduser   date: '2017-01-06T15:17:30.486Z' }
+5 verbose request uri https://npm-proxy.fury.io/sQgrobcmt9f9PrsdsH5v/h_app30724158/-/user/org.couchdb.user:lisaveras
+6 verbose request new user, so can't send auth
+7 info attempt registry request try #1 at 10:17:30 AM
+8 verbose request id 4f942982593779dd
+9 http request PUT https://npm-proxy.fury.io/sQgrobcmt9f9PrsdsH5v/h_app30724158/-/user/org.couchdb.user:lisaveras
+10 http 403 https://npm-proxy.fury.io/sQgrobcmt9f9PrsdsH5v/h_app30724158/-/user/org.couchdb.user:lisaveras
+11 verbose headers { connection: 'keep-alive',
+11 verbose headers   'cache-control': 'no-cache',
+11 verbose headers   'content-encoding': 'gzip',
+11 verbose headers   'content-type': 'application/json; charset=utf-8',
+11 verbose headers   date: 'Fri, 06 Jan 2017 15:17:30 GMT',
+11 verbose headers   server: 'Cowboy',
+11 verbose headers   'strict-transport-security': 'max-age=2592000; includeSubdomains',
+11 verbose headers   vary: 'Accept-Encoding',
+11 verbose headers   via: '1.1 vegur, 1.1 vegur',
+11 verbose headers   'x-content-type-options': 'nosniff',
+11 verbose headers   'x-download-options': 'noopen',
+11 verbose headers   'x-frame-options': 'SAMEORIGIN',
+11 verbose headers   'x-permitted-cross-domain-policies': 'none',
+11 verbose headers   'x-request-id': '719f50ff-e3e0-4d4b-91bf-8b01605a4dbd',
+11 verbose headers   'x-runtime': '0.017664',
+11 verbose headers   'content-length': '28' }
+12 verbose request invalidating /Users/veras/.npm/npm-proxy.fury.io/sQgrobcmt9f9PrsdsH5v/h_app30724158/-/user/org.couchdb.user_3Alisaveras on PUT
+13 verbose adduser back [ { Error: Registry returned 403 for PUT on https://npm-proxy.fury.io/sQgrobcmt9f9PrsdsH5v/h_app30724158/-/user/org.couchdb.user:lisaveras
+13 verbose adduser       at makeError (/Users/veras/.nvm/versions/node/v6.4.0/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:302:12)
+13 verbose adduser       at CachingRegistryClient.<anonymous> (/Users/veras/.nvm/versions/node/v6.4.0/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:280:14)
+13 verbose adduser       at /Users/veras/.nvm/versions/node/v6.4.0/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:216:7
+13 verbose adduser       at Gunzip.onEnd (zlib.js:227:5)
+13 verbose adduser       at emitNone (events.js:91:20)
+13 verbose adduser       at Gunzip.emit (events.js:185:7)
+13 verbose adduser       at endReadableNT (_stream_readable.js:975:12)
+13 verbose adduser       at _combinedTickCallback (internal/process/next_tick.js:74:11)
+13 verbose adduser       at process._tickCallback (internal/process/next_tick.js:98:9) pkgid: 'sQgrobcmt9f9PrsdsH5v', statusCode: 403, code: 'E403' },
+13 verbose adduser   {},
+13 verbose adduser   '{}' ]
+14 warn adduser Incorrect username or password
+14 warn adduser You can reset your account by visiting:
+14 warn adduser
+14 warn adduser     https://npmjs.org/forgot
+15 verbose stack Error: Registry returned 403 for PUT on https://npm-proxy.fury.io/sQgrobcmt9f9PrsdsH5v/h_app30724158/-/user/org.couchdb.user:lisaveras
+15 verbose stack     at makeError (/Users/veras/.nvm/versions/node/v6.4.0/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:302:12)
+15 verbose stack     at CachingRegistryClient.<anonymous> (/Users/veras/.nvm/versions/node/v6.4.0/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:280:14)
+15 verbose stack     at /Users/veras/.nvm/versions/node/v6.4.0/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:216:7
+15 verbose stack     at Gunzip.onEnd (zlib.js:227:5)
+15 verbose stack     at emitNone (events.js:91:20)
+15 verbose stack     at Gunzip.emit (events.js:185:7)
+15 verbose stack     at endReadableNT (_stream_readable.js:975:12)
+15 verbose stack     at _combinedTickCallback (internal/process/next_tick.js:74:11)
+15 verbose stack     at process._tickCallback (internal/process/next_tick.js:98:9)
+16 verbose statusCode 403
+17 verbose pkgid sQgrobcmt9f9PrsdsH5v
+18 verbose cwd /Users/veras/Desktop/Projects/WikiMiner
+19 error Darwin 16.3.0
+20 error argv "/Users/veras/.nvm/versions/node/v6.4.0/bin/node" "/Users/veras/.nvm/versions/node/v6.4.0/bin/npm" "adduser"
+21 error node v6.4.0
+22 error npm  v4.0.5
+23 error code E403
+24 error Registry returned 403 for PUT on https://npm-proxy.fury.io/sQgrobcmt9f9PrsdsH5v/h_app30724158/-/user/org.couchdb.user:lisaveras
+25 error If you need help, you may report this error at:
+25 error     <https://github.com/npm/npm/issues>
+26 verbose exit [ 1, true ]
