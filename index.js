@@ -13,21 +13,27 @@ module.exports = function(){
 		.then((response) => {
 			const jsonPages = JSON.parse(response.body).query.pages;
 	 		let fullText = '';
+	 		let articleId = '';
+	 		let articleTitle = '';
 
 	 		for (let property in jsonPages) {
 	 			if (!jsonPages[property].extract && !fullText) throw new Error(`Unable to find page with title ${title}`);
+	 			articleTitle = jsonPages[property].title;
 				let text = jsonPages[property].extract;
 				text = processor.process(text);
 				fullText += ` ${text}`
+				articleId = property;
 			}
 
 			const redirect = new RegExp(`${title}.+?may refer to:\n`, 'i');
 			const redirect2 = new RegExp(`${title}.+?can refer to:\n`, 'i');
-			if (redirect.test(fullText) || redirect2.test(fullText) ) throw new Error(`"${title}" may refer to multiple pages. Please enter a more specific title`)
+			if ( redirect.test(fullText) || redirect2.test(fullText) ) throw new Error(`"${title}" may refer to multiple pages. Please enter a more specific title`)
 
 			let noStopWords = utils.noStopwords(fullText)
 
 			return {
+				title: articleTitle,
+				url: `http://en.wikipedia.org/?curid=${articleId}`,
 				text: fullText,
 				textMinusStop: noStopWords,
 				topWords: utils.topWords(noStopWords, topCount),
